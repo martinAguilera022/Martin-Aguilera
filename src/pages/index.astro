@@ -1,10 +1,15 @@
 ---
 
 import Layout from "../layouts/Layout.astro";
+import Hero from "@/components/heroTextComp";
 import Projects, { type Project } from "../components/proyects.astro";
+import PerfilHero from "@/components/prefilHero"
 import Certificates, {
 	type Certificate,
 } from "../components/certificates.astro";
+import ScrollVelocity from '@/components/ScrollVelocity';
+  
+
 
 const projects: Project[] = [
 	{
@@ -13,44 +18,44 @@ const projects: Project[] = [
 		description:
 			"Una landing para una empresa de seguridad privada responsiva construida con Vite, React y Tailwind CSS para presentar servicios profesionales, mostrar el portfolio y habilitar contacto directo vía WhatsApp.",
 		tags: ["Vite", "React", "Tailwind CSS", "Vercel"],
-		repo: "https://lnkd.in/di6VDR6M",
-		href: "https://lnkd.in/di6VDR6M",
+		repo: "https://github.com/martinAguilera022/prevencionBordon",
+		href: "https://prevencion-bordon.vercel.app/",
 	},
 	{
 		title: "CrudoShop - E-commerce",
-		year: "2024",
+		year: "2025",
 		description:
 			"E-commerce multiproducto con carrito de compras y panel de administración basado en Firebase. Permite gestionar inventario, roles y procesar pedidos de manera segura.",
 		tags: ["HTML", "CSS", "React", "JavaScript", "Firebase"],
-		repo: "#",
-		href: "#",
+		repo: "https://github.com/martinAguilera022/crudoShop",
+		href: "https://crudo-shop-6vnq.vercel.app/",
 	},
 	{
-		title: "PadelPlanner - Torneos de Pádel",
-		year: "2023",
+		title: "Finanzas- Web para gestionar tus gastos",
+		year: "2025",
 		description:
-			"Aplicación web para organizar torneos: registra parejas, asigna horarios según disponibilidad y controla resultados en tiempo real sin intervención manual.",
-		tags: ["HTML", "CSS", "JavaScript"],
-		repo: "#",
-		href: "#",
+			"Una web la cual permite gestionar tus gastos personales y ver los graficos mensuales",
+		tags: ["React","HTML", "CSS", "JavaScript","Firebase"],
+		repo: "https://github.com/martinAguilera022/Finanzas",
+		href: "https://finanzas-umber-eight.vercel.app/",
 	},
 	{
 		title: "App del Clima",
-		year: "2022",
+		year: "2024",
 		description:
 			"Consulta meteorológica en tiempo real por geolocalización o búsqueda manual. Muestra temperatura, estado del cielo y datos relevantes para cualquier ciudad.",
 		tags: ["HTML", "CSS", "JavaScript"],
-		repo: "#",
-		href: "#",
+		repo: "https://github.com/martinAguilera022/App-Clima",
+		href: "https://martinaguilera022.github.io/App-Clima/",
 	},
 	{
 		title: "NexShop - Maquetación E-commerce",
-		year: "2022",
+		year: "2024",
 		description:
 			"Maquetación responsiva de un e-commerce completo con foco en SEO, estructura semántica y estilos modulares con Sass.",
 		tags: ["HTML", "CSS", "JavaScript", "Sass"],
-		repo: "#",
-		href: "#",
+		repo: "https://github.com/martinAguilera022/nexshop",
+		href: "https://martinaguilera022.github.io/nexshop/",
 	},
 ] satisfies Project[];
 
@@ -89,14 +94,18 @@ const certificates: Certificate[] = [
 		</div>
 		
 		<div
-			class="mx-auto flex min-h-[75vh] max-w-5xl flex-col items-center justify-center gap-10 px-6 py-16 text-center md:flex-row md:gap-14 md:text-left"
+			class="mx-auto flex min-h-[75vh] max-w-5xl flex-col items-center justify-center gap-10 px-6 py-16 text-center md:flex-row md:gap-14 "
 		>
-			<div class="flex w-full flex-col items-center gap-6 md:w-1/2 md:items-start">
+			<div class="flex w-full flex-col items-center gap-6 md:w-1/2 md:items-center">
+                <PerfilHero client:load />
+
 				<span class="text-sm font-semibold uppercase tracking-[0.4em] text-emerald-300">Hola, soy</span>
-				<h1 class="text-4xl font-black leading-none text-white sm:text-6xl">Martín Aguilera</h1>
+				<div class="mx-auto ...">
+					<Hero client:load />
+				  </div>
+				
 				<p class="max-w-xl text-pretty text-lg text-slate-300 sm:text-xl">
-					Desarrollador front-end que diseña interfaces agiles, accesibles y orientadas al negocio con React,
-					Tailwind y servicios cloud.
+					 Desarrollador Front-End apasionado por crear experiencias web modernas y funcionales.
 				</p>
 				<div class="flex flex-wrap items-center justify-center gap-3 md:justify-start">
 					<a
@@ -123,35 +132,20 @@ const certificates: Certificate[] = [
 						Descargar CV
 					</a>
 				</div>
-				<ul class="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.3em] text-slate-500">
-					<li class="flex items-center gap-2">
-						<span class="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-						JavaScript · TypeScript
-					</li>
-					<li class="flex items-center gap-2">
-						<span class="h-1.5 w-1.5 rounded-full bg-sky-400" />
-						React · Vite
-					</li>
-					<li class="flex items-center gap-2">
-						<span class="h-1.5 w-1.5 rounded-full bg-fuchsia-400" />
-						Tailwind · Firebase
-					</li>
-				</ul>
+			
 			</div>
-			<figure class="relative flex w-full items-center justify-center md:w-1/2 md:justify-end">
-				<span class="absolute -top-10 right-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.4em] text-emerald-200 md:-top-12 md:right-8">
-					<span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-					Open to Work
-				</span>
-				<span class="absolute inset-auto -left-6 top-8 hidden h-28 w-28 rounded-full bg-emerald-500/25 blur-3xl md:block" />
-				<img
-					src="/Perfil-Cv.jpg"
-					alt="Retrato de Martín Aguilera"
-					class="h-60 w-60 rounded-3xl border border-slate-900/60 object-cover shadow-[0_28px_60px_-18px_rgba(16,185,129,0.35)] md:h-72 md:w-72"
-					loading="lazy"
-				/>
-			</figure>
+			
 		</div>
+		<ScrollVelocity
+  texts={[
+    'REACT ◆ HTML ◆ CSS ◆ JAVASCRIPT ◆ SCSS ◆ NODE ◆ GIT ◆ FIREBASE ◆', 'REACT ◆ HTML ◆ CSS ◆ JAVASCRIPT ◆ SCSS ◆ NODE ◆ GIT ◆ FIREBASE ◆'
+  ]}
+  velocity={80}
+  className="custom-scroll-text text-sm font-semibold uppercase tracking-[0.4em] text-emerald-300"
+  client:load
+/>
+
+
 	</section>
 	<div id="proyectos">
 		<Projects
@@ -169,15 +163,48 @@ const certificates: Certificate[] = [
 
 
 	<section
-		id="sobre-mi"
-		class="mx-auto flex w-full max-w-4xl flex-col gap-6 px-6 pb-24 text-center sm:text-left"
-	>
-		<h2 class="text-3xl font-bold text-white sm:text-4xl">Sobre mí</h2>
-		<p class="text-pretty text-base leading-relaxed text-slate-300 sm:text-lg">
-			Soy un desarrollador orientado al detalle que disfruta trabajar cerca de diseño y producto para construir interfaces claras, performantes y fáciles de mantener. Mi experiencia incluye proyectos de comercio electrónico, aplicaciones interactivas y herramientas internas donde combino JavaScript moderno, frameworks front-end y servicios cloud como Firebase.
-		</p>
-		<p class="text-pretty text-base leading-relaxed text-slate-300 sm:text-lg">
-			Actualmente busco oportunidades para seguir creciendo en equipos colaborativos, aportando mi mirada centrada en la experiencia de usuario y la mejora continua. Si crees que puedo ayudar en tu proyecto, ¡hablemos!
-		</p>
-	</section>
+  id="sobre-mi"
+  class="relative mx-auto w-full max-w-5xl px-6 py-24 text-center sm:text-left"
+>
+  <!-- Efectos de fondo suaves -->
+  <div aria-hidden="true" class="absolute inset-0 -z-10">
+    <div class="absolute left-[10%] top-[20%] h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
+    <div class="absolute right-[15%] bottom-[10%] h-72 w-72 rounded-full bg-sky-500/10 blur-[120px]" />
+  </div>
+
+  <h2 class="text-4xl font-bold text-white text-center mb-10 sm:text-5xl">
+    Sobre mí
+  </h2>
+
+  <div class="flex flex-col-reverse md:flex-row items-center gap-10">
+    <!-- Texto -->
+    <div class="md:w-1/2 space-y-4">
+      <p class="text-lg leading-relaxed text-slate-300">
+        Soy un desarrollador orientado al detalle que disfruta trabajar cerca de diseño y producto para construir interfaces claras, performantes y fáciles de mantener.
+      </p>
+      <p class="text-lg leading-relaxed text-slate-300">
+        Mi experiencia incluye proyectos de comercio electrónico, aplicaciones interactivas y herramientas internas donde combino JavaScript moderno, frameworks front-end y servicios cloud como Firebase.
+      </p>
+      <p class="text-lg leading-relaxed text-slate-300">
+        Actualmente busco oportunidades para seguir creciendo en equipos colaborativos, aportando mi mirada centrada en la experiencia de usuario y la mejora continua.
+      </p>
+    </div>
+
+    <!-- Imagen con efecto -->
+    <div class="relative md:w-1/2 flex justify-center">
+      <div class="relative group">
+        <img
+          src="/Perfil-Cv.jpg"
+          alt="Retrato de Martín Aguilera"
+          class="h-64 w-64 md:h-80 md:w-80 rounded-full object-cover border border-slate-800 shadow-[0_28px_60px_-18px_rgba(16,185,129,0.35)] 
+                 transition-transform duration-500 ease-out group-hover:scale-105 
+                 filter brightness-90 contrast-110 saturate-110"
+          loading="lazy"
+        />
+        <!-- Filtro de color dinámico -->
+        <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-emerald-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
+      </div>
+    </div>
+  </div>
+</section>
 </Layout>

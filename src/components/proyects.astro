@@ -33,10 +33,10 @@ const hasProjects = Array.isArray(projects) && projects.length > 0;
 	</header>
 
 	{hasProjects ? (
-		<div class="grid gap-4 sm:gap-6 sm:grid-cols-2 xl:grid-cols-3">
+		<div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
 			{projects.map((project) => (
 				<article
-					class="group relative flex h-full flex-col rounded-2xl border border-slate-800/70 bg-slate-900/40 p-4 shadow-lg shadow-black/20 backdrop-blur transition active:scale-[0.98] sm:rounded-3xl sm:p-6 sm:hover:-translate-y-1 sm:hover:border-emerald-400/60 sm:hover:shadow-emerald-500/20"
+					class="group relative flex h-full flex-col rounded-3xl border border-slate-800/70 bg-slate-900/40 p-6 shadow-lg shadow-black/20 backdrop-blur transition hover:-translate-y-1 hover:border-emerald-400/60 hover:shadow-emerald-500/20"
 				>
 					<div class="flex items-start justify-between gap-4">
 						<div class="flex flex-col gap-2">
