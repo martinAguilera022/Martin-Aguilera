@@ -1,0 +1,185 @@
+---
+export interface Certificate {
+	title: string;
+	issuer: string;
+	issueDate?: string;
+	hours?: string;
+	credentialId?: string;
+	credentialUrl?: string;
+	badgeUrl?: string;
+}
+
+interface Props {
+	certificates: Certificate[];
+	title?: string;
+	description?: string;
+}
+
+const {
+	certificates,
+	title = "Certificados",
+	description,
+}: Props = Astro.props;
+
+const hasCertificates = Array.isArray(certificates) && certificates.length > 0;
+---
+
+<section class="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-12 sm:gap-8 sm:px-6 sm:py-16">
+	<header class="flex flex-col gap-2 text-center sm:gap-3">
+		<span class="text-xs font-semibold uppercase tracking-[0.4em] text-emerald-400 sm:text-sm">
+			Formación
+		</span>
+		<h2 class="text-2xl font-bold text-white sm:text-3xl md:text-4xl">{title}</h2>
+		{description && (
+			<p class="mx-auto max-w-2xl text-sm text-slate-300 sm:text-base">
+				{description}
+			</p>
+		)}
+	</header>
+
+	{hasCertificates ? (
+		<ul class="grid gap-4 sm:gap-6 sm:grid-cols-2">
+			{certificates.map((certificate) => (
+				<li
+					class="group relative flex h-full flex-col gap-3 rounded-2xl border border-slate-800/70 bg-slate-900/40 p-4 shadow-lg shadow-black/20 backdrop-blur transition active:scale-[0.98] sm:gap-4 sm:rounded-3xl sm:p-6 sm:hover:-translate-y-1 sm:hover:border-emerald-400/60 sm:hover:shadow-emerald-500/20"
+				>
+					<div class="flex items-start gap-4">
+						{certificate.badgeUrl && (
+							<img
+								src={certificate.badgeUrl}
+								alt={`Insignia de ${certificate.title}`}
+								class="h-16 w-16 rounded-xl border border-slate-700 object-cover"
+								loading="lazy"
+							/>
+						)}
+						<div class="flex flex-col gap-1 text-left">
+							<h3 class="text-lg font-semibold text-white">
+								{certificate.title}
+							</h3>
+							<span class="text-sm font-medium text-emerald-300">
+								{certificate.issuer}
+							</span>
+							{certificate.issueDate && (
+								<span class="text-xs uppercase tracking-[0.3em] text-slate-400">
+									{certificate.issueDate}
+								</span>
+							)}
+							{certificate.hours && (
+								<span class="text-xs text-slate-400">
+									{certificate.hours}
+								</span>
+							)}
+						</div>
+					</div>
+
+					{certificate.credentialId && (
+						<div class="text-xs font-medium uppercase tracking-wide text-slate-400">
+							ID credencial: {certificate.credentialId}
+						</div>
+					)}
+
+					<div class="mt-auto flex flex-wrap items-center gap-3 text-sm font-semibold">
+						{certificate.badgeUrl && (
+							<button
+								type="button"
+								class="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-2 text-slate-950 transition hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
+								data-cert-trigger
+								data-cert-src={certificate.badgeUrl}
+								data-cert-title={`Certificado: ${certificate.title}`}
+							>
+								<span>Ver certificado</span>
+								<svg
+									viewBox="0 0 24 24"
+									aria-hidden="true"
+									class="h-4 w-4"
+									fill="currentColor"
+								>
+									<path
+										d="M5 12.75a.75.75 0 0 1 .75-.75h6.69L9.22 9.03a.75.75 0 1 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 1 1-1.06-1.06l3.22-3.22H5.75A.75.75 0 0 1 5 12.75Z"
+									/>
+								</svg>
+							</button>
+						)}
+						
+					</div>
+				</li>
+			))}
+		</ul>
+	) : (
+		<div class="rounded-3xl border border-dashed border-slate-700 bg-slate-900/30 p-12 text-center text-sm text-slate-400">
+			Todavía no hay certificados cargados. Suma elementos a la lista `certificates` para mostrarlos aquí.
+		</div>
+	)}
+	<div
+		class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/60 p-6 backdrop-blur-sm transition-opacity"
+		data-cert-modal
+	>
+		<div class="relative flex w-full max-w-3xl flex-col gap-4 rounded-3xl border border-slate-800/70 bg-slate-950/90 p-6 shadow-2xl shadow-black/40">
+			<button
+				type="button"
+				class="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-700 text-slate-300 transition hover:border-slate-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
+				data-cert-close
+			>
+				<span class="sr-only">Cerrar</span>
+				&times;
+			</button>
+			<div class="flex flex-col gap-3 text-left">
+				<h3 class="text-lg font-semibold text-white" data-cert-title>Certificado</h3>
+				<img
+					src=""
+					alt=""
+					class="max-h-[70vh] w-full rounded-2xl border border-slate-800/70 object-contain"
+					data-cert-image
+				/>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script is:inline>
+	const modal = document.querySelector("[data-cert-modal]");
+	const image = modal?.querySelector("[data-cert-image]");
+	const title = modal?.querySelector("[data-cert-title]");
+	const closeBtn = modal?.querySelector("[data-cert-close]");
+
+	if (modal && image && title && closeBtn) {
+		const openModal = (src, caption) => {
+			image.src = src;
+			image.alt = caption;
+			title.textContent = caption;
+			modal.classList.remove("hidden");
+			modal.classList.add("flex");
+			document.body.style.overflow = "hidden";
+		};
+
+		const closeModal = () => {
+			modal.classList.add("hidden");
+			modal.classList.remove("flex");
+			document.body.style.overflow = "";
+		};
+
+		closeBtn.addEventListener("click", closeModal);
+		modal.addEventListener("click", (event) => {
+			if (event.target === modal) {
+				closeModal();
+			}
+		});
+
+		document.addEventListener("keydown", (event) => {
+			if (event.key === "Escape" && !modal.classList.contains("hidden")) {
+				closeModal();
+			}
+		});
+
+		document.querySelectorAll("[data-cert-trigger]").forEach((button) => {
+			button.addEventListener("click", () => {
+				const src = button.getAttribute("data-cert-src");
+				const caption = button.getAttribute("data-cert-title");
+				if (src) {
+					openModal(src, caption ?? "Certificado");
+				}
+			});
+		});
+	}
+</script>
+

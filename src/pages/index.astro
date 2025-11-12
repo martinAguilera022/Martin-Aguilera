@@ -1,11 +1,200 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import Projects, { type Project } from "../components/proyects.astro";
+import Certificates, {
+	type Certificate,
+} from "../components/certificates.astro";
+import Prism from "../components/Prism";
+
+const projects: Project[] = [
+	{
+		title: "Landing Page ,Prevencion Bordon",
+		year: "2025",
+		description:
+			"Una landing para una empresa de seguridad privada responsiva construida con Vite, React y Tailwind CSS para presentar servicios profesionales, mostrar el portfolio y habilitar contacto directo vía WhatsApp.",
+		tags: ["Vite", "React", "Tailwind CSS", "Vercel"],
+		repo: "https://lnkd.in/di6VDR6M",
+		href: "https://lnkd.in/di6VDR6M",
+	},
+	{
+		title: "CrudoShop - E-commerce",
+		year: "2024",
+		description:
+			"E-commerce multiproducto con carrito de compras y panel de administración basado en Firebase. Permite gestionar inventario, roles y procesar pedidos de manera segura.",
+		tags: ["HTML", "CSS", "React", "JavaScript", "Firebase"],
+		repo: "#",
+		href: "#",
+	},
+	{
+		title: "PadelPlanner - Torneos de Pádel",
+		year: "2023",
+		description:
+			"Aplicación web para organizar torneos: registra parejas, asigna horarios según disponibilidad y controla resultados en tiempo real sin intervención manual.",
+		tags: ["HTML", "CSS", "JavaScript"],
+		repo: "#",
+		href: "#",
+	},
+	{
+		title: "App del Clima",
+		year: "2022",
+		description:
+			"Consulta meteorológica en tiempo real por geolocalización o búsqueda manual. Muestra temperatura, estado del cielo y datos relevantes para cualquier ciudad.",
+		tags: ["HTML", "CSS", "JavaScript"],
+		repo: "#",
+		href: "#",
+	},
+	{
+		title: "NexShop - Maquetación E-commerce",
+		year: "2022",
+		description:
+			"Maquetación responsiva de un e-commerce completo con foco en SEO, estructura semántica y estilos modulares con Sass.",
+		tags: ["HTML", "CSS", "JavaScript", "Sass"],
+		repo: "#",
+		href: "#",
+	},
+] satisfies Project[];
+
+const certificates: Certificate[] = [
+	{
+		title: "Desarrollo Web Front-End",
+		issuer: "Coderhouse",
+		issueDate: "Ago 2024",
+		hours: "38 hs",
+		credentialUrl: "#",
+		badgeUrl: "/Certificado-Desarrollo-Web.png",
+	},
+	{
+		title: "React",
+		issuer: "CoderHouse",
+		issueDate: "Feb 2025",
+		hours: "30 h",
+		credentialUrl: "#",
+		badgeUrl: "/Certificado-React-js.png",
+	},
+	{
+		title: "JavaScript4",
+		issuer: "CoderHouse",
+		issueDate: "Nov 2024",
+		hours: "36 hs",
+		credentialUrl: "#",
+		badgeUrl: "/Certificado-JavaScript.png",
+	},
+] satisfies Certificate[];
 ---
-
 <Layout>
-	<Welcome />
+	<section class="relative overflow-hidden">
+		<div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
+			<div class="absolute -left-[12%] top-[18%] h-56 w-56 rounded-full bg-emerald-500/20 blur-3xl" />
+			<div class="absolute right-[8%] top-[30%] h-64 w-64 rounded-full bg-sky-500/10 blur-[120px]" />
+		</div>
+		<div class="pointer-events-none absolute inset-0 -z-10 opacity-20 sm:opacity-30">
+			<Prism
+				client:load
+				height={3.5}
+				baseWidth={5.5}
+				animationType="rotate"
+				glow={0.6}
+				noise={0.2}
+				transparent={true}
+				scale={3.5}
+				hueShift={0.2}
+				colorFrequency={1.2}
+				timeScale={0.3}
+				bloom={0.8}
+				suspendWhenOffscreen={true}
+			/>
+		</div>
+		<div
+			class="mx-auto flex min-h-[85vh] max-w-5xl flex-col items-center justify-center gap-8 px-4 py-12 text-center sm:gap-10 sm:px-6 sm:py-16 md:flex-row md:gap-14 md:text-left"
+		>
+			<div class="flex w-full flex-col items-center gap-5 sm:gap-6 md:w-1/2 md:items-start">
+				<span class="text-xs font-semibold uppercase tracking-[0.4em] text-emerald-300 sm:text-sm">Hola, soy</span>
+				<h1 class="text-3xl font-black leading-tight text-white sm:text-5xl md:text-6xl md:leading-none">Martín Aguilera</h1>
+				<p class="max-w-xl text-pretty text-base leading-relaxed text-slate-300 sm:text-lg sm:leading-normal md:text-xl">
+					Desarrollador front-end que diseña interfaces agiles, accesibles y orientadas al negocio con React,
+					Tailwind y servicios cloud.
+				</p>
+				<div class="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-center md:justify-start">
+					<a
+						class="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-6 py-3.5 text-sm font-semibold tracking-wide text-white shadow-lg shadow-emerald-500/40 transition active:scale-95 hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300 sm:px-7"
+						href="#proyectos"
+					>
+						<span>Ver proyectos</span>
+						<span class="translate-x-0 text-lg transition-transform group-hover:translate-x-1">→</span>
+					</a>
+					<a
+						class="inline-flex items-center justify-center rounded-full border border-slate-700 px-5 py-3 text-sm font-semibold tracking-wide text-slate-200 transition active:scale-95 hover:border-slate-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400 sm:px-6"
+						href="https://www.linkedin.com/in/martin-aguilera-69005527a/"
+						target="_blank"
+						rel="noreferrer"
+					>
+						LinkedIn
+					</a>
+					<a
+						class="inline-flex items-center justify-center rounded-full border border-slate-700 px-5 py-3 text-sm font-semibold tracking-wide text-slate-200 transition active:scale-95 hover:border-slate-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400 sm:px-6"
+						href="/public/CV- Martin Aguilera-Dev.pdf"
+						target="_blank"
+						rel="noreferrer"
+					>
+						Descargar CV
+					</a>
+				</div>
+				<ul class="flex flex-wrap items-center justify-center gap-3 text-[10px] uppercase tracking-[0.25em] text-slate-500 sm:gap-4 sm:text-xs sm:tracking-[0.3em]">
+					<li class="flex items-center gap-1.5 sm:gap-2">
+						<span class="h-1 w-1 rounded-full bg-emerald-400 sm:h-1.5 sm:w-1.5" />
+						<span class="whitespace-nowrap">JavaScript · TypeScript</span>
+					</li>
+					<li class="flex items-center gap-1.5 sm:gap-2">
+						<span class="h-1 w-1 rounded-full bg-sky-400 sm:h-1.5 sm:w-1.5" />
+						<span class="whitespace-nowrap">React · Vite</span>
+					</li>
+					<li class="flex items-center gap-1.5 sm:gap-2">
+						<span class="h-1 w-1 rounded-full bg-fuchsia-400 sm:h-1.5 sm:w-1.5" />
+						<span class="whitespace-nowrap">Tailwind · Firebase</span>
+					</li>
+				</ul>
+			</div>
+			<figure class="relative flex w-full items-center justify-center sm:mt-4 md:mt-0 md:w-1/2 md:justify-end">
+				<span class="absolute -top-8 right-2 inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-500/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-emerald-200 sm:-top-10 sm:right-4 sm:gap-2 sm:px-3 sm:text-xs sm:tracking-[0.4em] md:-top-12 md:right-8">
+					<span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse sm:h-2 sm:w-2" />
+					Open to Work
+				</span>
+				<span class="absolute inset-auto -left-4 top-6 hidden h-20 w-20 rounded-full bg-emerald-500/25 blur-3xl sm:block sm:h-28 sm:w-28 md:-left-6 md:top-8" />
+				<img
+					src="/Perfil-Cv.jpg"
+					alt="Retrato de Martín Aguilera"
+					class="h-48 w-48 rounded-2xl border border-slate-900/60 object-cover shadow-[0_20px_40px_-12px_rgba(16,185,129,0.35)] sm:h-60 sm:w-60 sm:rounded-3xl sm:shadow-[0_28px_60px_-18px_rgba(16,185,129,0.35)] md:h-72 md:w-72"
+					loading="lazy"
+				/>
+			</figure>
+		</div>
+	</section>
+	<div id="proyectos">
+		<Projects
+			projects={projects}
+			description="Algunos de los proyectos en los que he trabajado recientemente, combinando desarrollo front-end, integración con servicios de terceros y diseño responsivo."
+		/>
+	</div>
+
+	<div id="certificados">
+		<Certificates
+			certificates={certificates}
+			description="Certificaciones que respaldan mi formación continua en desarrollo, frameworks modernos y experiencia de usuario."
+		/>
+	</div>
+
+
+	<section
+		id="sobre-mi"
+		class="mx-auto flex w-full max-w-4xl flex-col gap-5 px-4 pb-16 text-center sm:gap-6 sm:px-6 sm:pb-24 sm:text-left"
+	>
+		<h2 class="text-2xl font-bold text-white sm:text-3xl md:text-4xl">Sobre mí</h2>
+		<p class="text-pretty text-sm leading-relaxed text-slate-300 sm:text-base sm:leading-relaxed md:text-lg">
+			Soy un desarrollador orientado al detalle que disfruta trabajar cerca de diseño y producto para construir interfaces claras, performantes y fáciles de mantener. Mi experiencia incluye proyectos de comercio electrónico, aplicaciones interactivas y herramientas internas donde combino JavaScript moderno, frameworks front-end y servicios cloud como Firebase.
+		</p>
+		<p class="text-pretty text-sm leading-relaxed text-slate-300 sm:text-base sm:leading-relaxed md:text-lg">
+			Actualmente busco oportunidades para seguir creciendo en equipos colaborativos, aportando mi mirada centrada en la experiencia de usuario y la mejora continua. Si crees que puedo ayudar en tu proyecto, ¡hablemos!
+		</p>
+	</section>
 </Layout>
